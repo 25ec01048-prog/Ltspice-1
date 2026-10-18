@@ -1,0 +1,22 @@
+LTspice 26.0.2 for Windows
+Circuit: C:\Users\tulad\study\eda\ltspice-1\s5\s52.net
+Start Time: Thu Oct 15 22:12:47 2026
+Options:ALLOW_AMBIGUOUS_MODELS
+solver = Normal
+Maximum thread count: 8
+tnom = 27
+temp = 27
+method = trap
+C:\Users\tulad\study\eda\ltspice-1\s5\s52.net(5): Missing value, assuming 0V @ DC.
+
+vd N001 0
+^^^^^^^^^
+Total elapsed time: 0.112 seconds.
+
+Files loaded:
+C:\Users\tulad\study\eda\ltspice-1\s5\s52.net
+C:\Users\tulad\AppData\Local\LTspice\lib\cmp\standard.mos
+C:\Users\tulad\study\eda\ltspice-1\s5\low.pm
+C:\Users\tulad\study\eda\ltspice-1\s5\normal.pm
+C:\Users\tulad\study\eda\ltspice-1\s5\high.pm
+
