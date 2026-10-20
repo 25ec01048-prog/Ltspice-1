@@ -1,6 +1,6 @@
 LTspice 26.0.2 for Windows
 Circuit: C:\Users\tulad\study\eda\ltspice-1\s1\e1.net
-Start Time: Mon Oct 12 16:32:33 2026
+Start Time: Tue Oct 20 10:03:53 2026
 Options:ALLOW_AMBIGUOUS_MODELS
 solver = Normal
 Maximum thread count: 8
@@ -9,10 +9,12 @@ temp = 27
 method = trap
 Direct Newton iteration succeeded in finding operating point.
 Direct Newton iteration succeeded in finding operating point.
-Total elapsed time: 0.185 seconds.
+Total elapsed time: 0.187 seconds.
 
 Files loaded:
 C:\Users\tulad\study\eda\ltspice-1\s1\e1.net
 C:\Users\tulad\AppData\Local\LTspice\lib\cmp\standard.mos
 C:\Users\tulad\study\eda\ltspice-1\s1\65nm_bulk.pm
 
+current: Id(M1) =0.00115229189396 at 6.5e-08
+current2: Id(M1) =0.00104856386315 at 7e-08

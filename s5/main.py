@@ -21,7 +21,7 @@ for i, param  in enumerate(parameters):
         coef = np.polyfit(df_v[x_label][highslope_gm], df_v[y_label][highslope_gm], 1)
             
         v_t_t = -coef[1]/coef[0] # threshold voltage from linear extrapolation
-        ax[0].axvline(x=v_t_t, color=y[0].get_color(), linestyle=':', label=f'Intercept ({v_t_t:.2f} V)')
+        #ax[0].axvline(x=v_t_t, color=y[0].get_color(), linestyle=':', label=f'Intercept ({v_t_t:.2f} V)')
         print("Threshold voltage:",round(v_t_t,2),y_label)
         v_t = np.append(v_t, v_t_t)
         polynomial = np.poly1d(coef)
@@ -32,7 +32,7 @@ for i, param  in enumerate(parameters):
 
             # 4. Plot the results
             # plt.scatter(x, y, color='blue', label='Original Data')
-        ax[0].plot(x_extended, y_extrapolated, linestyle='--', label='Extrapolated Line', color=y[0].get_color())
+        ax[0].plot(x_extended, y_extrapolated, linestyle='--', label=f'X-Intercept ({v_t_t:.2f} V)', color=y[0].get_color())
 
     # print(v_t)
     ax[0].set_ylim(-0.0001)

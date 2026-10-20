@@ -1,31 +1,56 @@
+
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 
+# Gate-source voltages
+vgs_spice = ["vgs=300m", "vgs=600m", "vgs=900m", "vgs=1.5"]
+vgs_tcad = ["vg=0.3", "vg=0.6", "vgs=0.9", "vgs=1.5"]
 
-vgs = ["vgs=300m", "vgs=600m","vgs=900m", "vgs=1.5"]
-vsat = 1.5-0.33
-x_label = 'Vd'
-y_label = 'Id(M1)'
+# Load TCAD data
+df_tcad = pd.read_csv("q6.csv")
 
-for i in vgs:
-    
-    df = pd.read_csv(i+'.txt', delimiter="\t")
-    print(df.columns)
-    y = plt.plot(df[x_label], df[y_label], label="V_$g$="+i.split("=")[-1]+" (V)")
-    
-df_v = pd.read_csv('vgs=1.5.txt',sep="\t")
+# Column names
+vds_col = "Vd"
+id_col = "Id(M1)"
 
-x_ind = np.where(df_v[x_label] > vsat)[0][0] # index of the last zero crossing
-gd = np.gradient( df_v[y_label][x_ind:],df_v[x_label][x_ind:]).mean() # numerical derivative
-ro = (1/gd)/1000
-print(gd, ro)
-#f'$g_d = {round(gd, 2)} S r_{{o}} = {round(ro, 2)} k\\Omega\\mu m $',
-plt.text(0.5, 0.0003, f'$g_d = {round(gd*1000, 2)}mS/\\mu m $\n $r_{{o}} = {round(ro, 2)} k\\Omega\\mu m$ ', fontsize=10, color='black', ha='center')
-plt.xlabel(f'$V_{{DS}}$ V')
-plt.ylabel(f'$I_{{D}}$ A')
-plt.legend()
-plt.title(f'Output Characteristics of MOSFET')
-plt.grid(True, linestyle='--', alpha=0.6) 
-plt.legend() 
-plt.savefig('s3.png', dpi=600) 
+# Plot
+fig, ax = plt.subplots(figsize=(9, 6))
+
+for spice_name, tcad_name in zip(vgs_spice, vgs_tcad):
+
+    # SPICE data (solid line)
+    df_spice = pd.read_csv(spice_name + ".txt", sep="\t")
+    df_spice = df_spice.sort_values(by=vds_col)
+
+    line, = ax.plot(
+        df_spice[vds_col],
+        df_spice[id_col],
+        linestyle="-",
+        label=f"$V_{{GS}}$ = {spice_name.split('=')[-1]} V (SPICE)"
+    )
+
+    # TCAD data (dashed line)
+    vds_tcad_col = f"{tcad_name} X"
+    id_tcad_col = f"{tcad_name} Y"
+
+    df_tcad_sorted = df_tcad.sort_values(by=vds_tcad_col)
+    df_tcad_sorted = df_tcad_sorted[df_tcad_sorted[vds_tcad_col] < 2]
+
+    ax.plot(
+        df_tcad_sorted[vds_tcad_col],
+        df_tcad_sorted[id_tcad_col],
+        linestyle="--",
+        color=line.get_color(),
+        label=f"$V_{{GS}}$ = {spice_name.split('=')[-1]} V (TCAD)"
+    )
+
+# Formatting
+ax.set_xlabel(r"$V_{DS}$ (V)")
+ax.set_ylabel(r"$I_D$ (A)")
+ax.set_title("Output Characteristics of MOSFET")
+
+ax.grid(True, linestyle="--", alpha=0.6)
+ax.legend(fontsize=9, ncol=2)
+
+fig.tight_layout()
+fig.savefig("s3.png", dpi=600, bbox_inches="tight")
