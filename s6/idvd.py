@@ -34,7 +34,7 @@ vgs_tcad_col = "vgs=0.9 X"
 id_tcad_col = "vgs=0.9 Y"
 
 # Sort TCAD data
-df_tcad_sorted = df_tcad.sort_values(by=vgs_tcad_col)[df_tcad[vgs_tcad_col]< 1.1]
+df_tcad_sorted = df_tcad.sort_values(by=vgs_tcad_col)[df_tcad[vgs_tcad_col]<= 1.11]
 
 # Plot
 fig, ax = plt.subplots(figsize=(9, 6))
@@ -56,7 +56,7 @@ ax.plot(
 )
 
 # Formatting
-ax.set_xlabel(r"$V_{GS}$ (V)")
+ax.set_xlabel(r"$V_{DS}$ (V)")
 ax.set_ylabel(r"$I_D$ (A)")
 ax.set_title("Transfer Characteristics of MOSFET at $V_{DS}$ fixed")
 ax.grid(True, linestyle="--", alpha=0.6)

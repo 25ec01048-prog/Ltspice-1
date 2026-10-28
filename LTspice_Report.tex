@@ -1,7 +1,6 @@
 % ============================================================
 %  EC2L104 - Introduction to EDA Tools : LTspice Exercise Report
-%  Template. Put your plots in a folder named  figs/
-%  Missing images automatically show as grey placeholder boxes.
+%  Plots are read from figs/ (or s1/ ... s7/). Missing images show as grey boxes.
 % ============================================================
 \documentclass[11pt,a4paper]{article}
 
@@ -16,8 +15,8 @@
 \usepackage{xcolor}
 \usepackage{fancyhdr}
 \usepackage{listings}
-\usepackage[most]{tcolorbox}
 \usepackage[hidelinks]{hyperref}
+\usepackage{needspace}
 
 \graphicspath{{figs/}{s1/}{s2/}{s3/}{s4/}{s5/}{s6/}{s7/}}
 \sisetup{detect-all}
@@ -29,6 +28,15 @@
 \rhead{LTspice Exercise Report}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+% ---------- tighter vertical spacing ----------
+\captionsetup{font=small,skip=3pt}
+\setlength{\textfloatsep}{8pt}
+\setlength{\floatsep}{6pt}
+\setlength{\intextsep}{6pt}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
 
 % ---------- code listing style ----------
 \lstset{
@@ -39,28 +47,19 @@
   columns=fullflexible
 }
 
-% ---------- reusable boxes ----------
-\newtcolorbox{observations}{
-  colback=blue!4, colframe=blue!50!black,
-  title=Observations, fonttitle=\bfseries\small, boxrule=0.5pt
-}
-\newtcolorbox{conclusion}{
-  colback=green!5, colframe=green!40!black,
-  title=Conclusion, fonttitle=\bfseries\small, boxrule=0.5pt
-}
-\newtcolorbox{physics}{
-  colback=orange!6, colframe=orange!60!black,
-  title=Device-physics explanation, fonttitle=\bfseries\small, boxrule=0.5pt
-}
+% ---------- clean one-line text blocks ----------
+\newcommand{\obs}[1]{\par\smallskip\noindent\textbf{Observation:} #1\par\smallskip}
+\newcommand{\concl}[1]{\par\noindent\textbf{Conclusion:} #1\par\smallskip}
+\newcommand{\phys}[2]{\par\noindent\textbf{#1:} #2\par\smallskip}
 
-\newcommand{\todo}[1]{\textcolor{red!70!black}{\textit{[#1]}}}
 \newcommand{\blank}[1][3cm]{\rule{0pt}{1em}\rule[-0.3ex]{#1}{0.4pt}}
 
 % ---------- figure helpers ----------
 % \gfx{file}{width}{height-if-missing}
-% shows the image if it exists, otherwise a placeholder box
+% shows the image (capped at height \maxfigh) if it exists, otherwise a placeholder box
 \makeatletter
 \newif\iffigfound
+\newcommand{\maxfigh}{8cm}
 \newcommand{\figdirs}{./,figs/,s1/,s2/,s3/,s4/,s5/,s6/,s7/}
 \newcommand{\gfx}[3]{%
   \figfoundfalse
@@ -69,7 +68,7 @@
       \IfFileExists{\@figdir#1}{\figfoundtrue\xdef\@figpath{\@figdir#1}}{}%
     \fi}%
   \iffigfound
-    \includegraphics[width=#2]{\@figpath}%
+    \includegraphics[width=#2,height=\maxfigh,keepaspectratio]{\@figpath}%
   \else
     \fbox{\parbox[c][#3][c]{\dimexpr#2-2\fboxsep-2\fboxrule\relax}{%
       \centering\color{gray}Insert plot\\[2pt]\texttt{\detokenize{#1}}}}%
@@ -89,55 +88,69 @@
   \begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
-      \centering\gfx{#1}{\linewidth}{#6}\caption{#2}
+      \centering{\renewcommand{\maxfigh}{6cm}\gfx{#1}{\linewidth}{#6}}\caption{#2}
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.48\textwidth}
-      \centering\gfx{#3}{\linewidth}{#6}\caption{#4}
+      \centering{\renewcommand{\maxfigh}{6cm}\gfx{#3}{\linewidth}{#6}}\caption{#4}
     \end{subfigure}
   \end{figure}}
 
-% \circuit{file}{caption}{directive-placeholder}
-% LTspice schematic slot + the SPICE directive used for that exercise
+% \circuit{file}{caption}{directive}
 \newcommand{\circuit}[3]{%
   \subsection*{Circuit / Testbench}
   \begin{figure}[H]
     \centering
-    \gfx{#1}{0.65\textwidth}{5cm}
+    {\renewcommand{\maxfigh}{4.5cm}\gfx{#1}{0.5\textwidth}{3.5cm}}
     \caption{#2}
   \end{figure}
   \noindent\fcolorbox{gray!60}{gray!8}{%
     \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\ttfamily\footnotesize #3}}\par\medskip}
 
-% ---------- S5 experiment block ----------
-% \expblock{no}{parameter}{low / nominal / high}{file-stem}   (image: <stem>.png)
-\newcommand{\expblock}[7]{%
-  \subsection{Experiment #1: #2}
-  \textbf{Values (low / nominal / high):} #3 \par\medskip
+% two circuits side by side: file1 cap1 directive1 file2 cap2 directive2
+\newcommand{\circuittwo}[6]{%
+  \subsection*{Circuit / Testbench}
   \begin{figure}[H]
     \centering
-    \gfx{#4.png}{\textwidth}{6.5cm}
-    \caption{Exp.~#1: effect of varying #2. Left: $I_D$--$V_G$ at $V_{DS}=0.4$~V with $V_{TH}$ extraction; middle: same on a log scale with subthreshold swing; right: $I_D$--$V_D$ at $V_{GS}=1.1$~V.}
+    \begin{subfigure}[t]{0.48\textwidth}
+      \centering{\renewcommand{\maxfigh}{4.5cm}\gfx{#1}{\linewidth}{3.5cm}}\caption{#2}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+      \centering{\renewcommand{\maxfigh}{4.5cm}\gfx{#4}{\linewidth}{3.5cm}}\caption{#5}
+    \end{subfigure}
   \end{figure}
-  \begin{table}[H]
-    \centering\small
+  \noindent\parbox[t]{0.485\textwidth}{\fcolorbox{gray!60}{gray!8}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\ttfamily\footnotesize #3}}}\hfill
+  \parbox[t]{0.485\textwidth}{\fcolorbox{gray!60}{gray!8}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\ttfamily\footnotesize #6}}}\par\medskip}
+
+% ---------- S5 experiment block (compact: two per page) ----------
+% \expblock{no}{parameter}{low / nominal / high}{file-stem}{low}{nom}{high}{observation}
+\newcommand{\expblock}[8]{%
+  \subsection{Experiment #1: #2}
+  \textbf{Values (low / nominal / high):} #3 \par\smallskip
+  \begin{figure}[H]
+    \centering
+    {\renewcommand{\maxfigh}{4.8cm}\gfx{#4.png}{0.92\textwidth}{4.5cm}}
+    \caption{Exp.~#1: effect of varying #2 (left: $I_D$--$V_G$ with $V_{TH}$; middle: log scale with SS; right: $I_D$--$V_D$).}
+  \end{figure}
+  \vspace{-0.4em}
+  \noindent\begin{minipage}[t]{0.57\textwidth}
+    \vspace{0pt}\centering\footnotesize\setlength{\tabcolsep}{4pt}
     \begin{tabular}{@{}lcccc@{}}
       \toprule
-      Case & $V_{TH}$ (V) & SS (mV/dec) & $I_{ON}$ ($\mu$A/$\mu$m) & $I_{OFF}$ (nA/$\mu$m)\\
+      Case & $V_{TH}$ & SS & $I_{ON}$ & $I_{OFF}$\\
+       & (V) & (mV/dec) & ($\mu$A/$\mu$m) & (nA/$\mu$m)\\
       \midrule
       Low     & #5 \\
       Nominal & #6 \\
       High    & #7 \\
       \bottomrule
     \end{tabular}
-    \caption{Extracted parameters, Exp.~#1.}
-  \end{table}
-  \begin{observations}
-    \todo{Describe the trend in $V_{TH}$, $I_{ON}$, $I_{OFF}$, slope/saturation.}\vspace{1.2cm}
-  \end{observations}
-  \begin{physics}
-    \todo{Connect the trend to device physics. If it contradicts expectation, explain how SPICE (BSIM) treats this parameter.}\vspace{1.5cm}
-  \end{physics}
-  \clearpage}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.40\textwidth}
+    \vspace{0pt}\small\textbf{Observation:} #8
+  \end{minipage}\par\medskip
+  }
 
 % ============================================================
 \begin{document}
@@ -147,7 +160,6 @@
   \centering
   \vspace*{1.5cm}
   {\Large\bfseries EC2L104 -- Introduction to EDA Tools}\\[0.3cm]
-  % {\large Course Faculty: Dr.\ Akshay K}\\[2cm]
   \vspace{2cm}
   {\Huge\bfseries LTspice Exercise Report}\\[0.4cm]
   {\large MOSFET Characterisation, Parametric Study and CMOS Inverter\\
@@ -159,45 +171,12 @@
     \textbf{GitHub repo:} & \blank[7cm]\ (\texttt{LTSPICE})
   \end{tabular}
   \vfill
-  % {\small Submitted via Google Classroom}
 \end{titlepage}
 
 \tableofcontents
-\clearpage
+\bigskip
 
-% ============================================================
-% \section*{Abstract}
-% \addcontentsline{toc}{section}{Abstract}
-% \todo{4--6 lines: what was simulated (65\,nm NMOS in LTspice, BSIM4 card), what was extracted ($V_{TH}$, $I_{ON}$, $I_{OFF}$, $g_{ds}$, $r_o$), key findings of the parametric study, quality of TCAD match, and inverter result.}
-% \vspace{2.5cm}
-
-% \section{Introduction and Setup}
-% \subsection{Objective}
-% \todo{State the aim of the exercise in your own words.}
-
-% \subsection{Tools and Methodology}
-% \begin{itemize}
-%   \item LTspice version: \blank[3cm]
-%   \item Model card: PTM 65\,nm NMOS (\texttt{nfit}), BSIM4 level 54
-%   \item Post-processing: Python (\texttt{numpy}, \texttt{matplotlib}, \texttt{pandas}), data exported from LTspice
-%   \item Device: $W=1~\mu$m unless stated; $V_{DD}=1.1$~V
-% \end{itemize}
-
-% \subsection{Definitions Used for Parameter Extraction}
-% \begin{tabular}{@{}lp{11cm}@{}}
-% $V_{TH}$  & \todo{method: constant-current / max-$g_m$ linear extrapolation / etc.; criterion used}\\[4pt]
-% $I_{ON}$  & $I_D$ at $V_{GS}=V_{DS}=1.1$~V\\[4pt]
-% $I_{OFF}$ & $I_D$ at $V_{GS}=0$, $V_{DS}=1.1$~V\\[4pt]
-% $g_{ds}$, $r_o$ & $g_{ds}=\partial I_D/\partial V_{DS}$ (\texttt{np.gradient}), $r_o=1/g_{ds}$
-% \end{tabular}
-
-% \subsection{Baseline Netlist}
-% \begin{lstlisting}
-% * paste the testbench netlist used for the .op / .dc runs
-% \end{lstlisting}
-% \clearpage
-
-% ============================================================
+\Needspace{0.6\textheight}
 \section{S1 -- Reading the Model Card}
 \circuit{s1-circuit.png}
   {LTspice testbench for the \texttt{.op} runs (\textit{L} = 65 nm and 70 nm).}
@@ -256,29 +235,20 @@
   \caption{Drain current from \texttt{.op}.}
 \end{table}
 
-\begin{observations}
-  We can see that with increase in channel length a proportional decrease in drain current.
-  \[ \frac{L_{70}}{L_{65}} = 1.08 \]
-  \[ \frac{I_{D65}}{I_{D70}} = \frac{1.15}{1.05} = 1.09 \]
-  \[ \frac{L_{70}}{L_{65}} \approx \frac{I_{D65}}{I_{D70}} \]
-\end{observations}
+\obs{We can see that with increase in channel length a proportional decrease in drain current. $\dfrac{L_{70}}{L_{65}} = 1.08$, \; $\dfrac{I_{D65}}{I_{D70}} = \dfrac{1.15}{1.05} = 1.09$, \; hence $\dfrac{L_{70}}{L_{65}} \approx \dfrac{I_{D65}}{I_{D70}}$.}
 
-\begin{conclusion}
-  From the observation we can conclude that \textbf{$I_D$ varies inversly proportional to channel length} which matches to the theory we learnt.
-  \[ I_D \propto \frac{1}{L} \]
-\end{conclusion}
-\clearpage
+\concl{From the observation we can conclude that \textbf{$I_D$ varies inversly proportional to channel length} which matches to the theory we learnt, $I_D \propto \dfrac{1}{L}$.}
 
 % ============================================================
+\Needspace{0.6\textheight}
 \section{S2 -- Transfer Characteristics}
 \circuit{s2-circuit.png}
   {LTspice testbench for $I_D$--$V_G$ ($V_{DS}$ = 50 mV and 1.1 V).}
   {.dc vg 0 1.1 0.01\\
    .step param v list 0.05 1.1}
 
-\includegraphics[width=\textwidth]{s2.png}
-\vspace{-0.5em}
-\captionof{figure}{$I_D$--$V_G$ at $V_{DS}=50$~mV and $1.1$~V ($L=65$~nm).}
+\onefig{s2.png}{0.8\textwidth}{6cm}
+  {$I_D$--$V_G$ at $V_{DS}=50$~mV and $1.1$~V ($L=65$~nm).}
 
 \begin{table}[H]
   \centering
@@ -303,19 +273,23 @@
   \end{tabular}
   \caption{Comparison of extracted parameters}
 \end{table}
-\clearpage
+
+\obs{The extracted $V_{TH}$, $I_{ON}$, $I_{OFF}$ and SS agree with Table~5.1 to within about 3\%, and the higher $V_{DS}$ curve shows a larger SS (98.28 vs 92.38 mV/dec) and a larger $I_{OFF}$ because of drain-induced barrier lowering.}
+
+\concl{The 65\,nm model card reproduces the reference transfer characteristics, with $V_{TH}\approx0.37$~V, $I_{ON}=1.15$~mA/$\mu$m and $I_{OFF}\approx67$~nA/$\mu$m.}
 
 % ============================================================
+\Needspace{0.6\textheight}
 \section{S3 -- Output Characteristics}
 \circuit{s3-circuit.png}
   {LTspice testbench for the $I_D$--$V_D$ family.}
   {.dc vd 0 1.5 0.01\\
    .step param v list 0.3 0.6 0.9 1.5}
 
-\onefig{s3.png}{0.8\textwidth}{7.5cm}
-  {$I_D$--$V_D$ family at $V_{GS}=0.3,\,0.6,\,0.9,\,1.5$~V.}
-\onefig{gd_vs_vds.png}{0.8\textwidth}{6cm}
-  {$g_{ds}$ (via \texttt{np.gradient}) versus $V_{DS}$; saturation region marked at $V_{GS}=1.5$~V.}
+\twofig
+  {s3.png}{$I_D$--$V_D$ family at $V_{GS}=0.3,\,0.6,\,0.9,\,1.5$~V}
+  {gd_vs_vds.png}{$g_{ds}$ (via \texttt{np.gradient}) versus $V_{DS}$; saturation region marked at $V_{GS}=1.5$~V}
+  {}{5cm}
 
 \begin{table}[H]
   \centering
@@ -330,121 +304,65 @@
   \end{tabular}
   \caption{Output conductance and resistance.}
 \end{table}
-\clearpage
+
+\obs{Each curve rises linearly in the triode region and then flattens in saturation, but the saturation current keeps a small positive slope, giving $g_{ds}=312.16~\mu$S/$\mu$m.}
+
+\concl{The device has a finite output resistance $r_o=3.20$~k$\Omega\cdot\mu$m caused by channel-length modulation and DIBL, so it is not an ideal current source.}
 
 % ============================================================
+\Needspace{0.6\textheight}
 \section{S4 -- Physics Check}
 \circuit{s4-circuit.png}
   {LTspice testbench for the model-parameter checks (\textit{UA}, \textit{UB}, \textit{VSAT}).}
   {.dc vg 0 3 0.01}
 
-\onefig{s4.png}{0.85\textwidth}{8cm}
+\onefig{s4.png}{0.8\textwidth}{6cm}
   {$I_D$--$V_G$ overlay: nominal, $UA=UB=0$, and $VSAT\times100$.}
 
-% \begin{table}[H]\centering
-% \begin{tabular}{@{}lccc@{}}\toprule
-% Case & $V_{TH}$ (V) & $I_{ON}$ ($\mu$A/$\mu$m) & $I_{OFF}$ (nA/$\mu$m)\\\midrule
-% Nominal                 & & & \\
-% $UA=UB=0$               & & & \\
-% $VSAT\times100$         & & & \\\bottomrule
-% \end{tabular}
-% \caption{Effect of switching off individual physical models.}
-% \end{table}
+\phys{$UA=UB=0$ $\leftrightarrow$ TCAD \emph{Enormal} (mobility degradation) model}{A large vertical gate field pulls carriers against the Si--SiO$_2$ interface where surface-roughness and phonon scattering reduce the effective mobility, and UA and UB model this reduction; setting them to zero removes the degradation, so $I_D$ keeps growing with $V_{GS}$ and $I_{ON}$ becomes noticeably higher than nominal, while $V_{TH}$ and $I_{OFF}$ stay essentially unchanged.}
 
-\begin{physics}
-  \textbf{$UA=UB=0$ $\leftrightarrow$ TCAD \emph{Enormal} (mobility degradation) model:}
-  % \todo{explain vertical-field mobility degradation, surface-roughness scattering, effect on $I_{ON}$.}\vspace{1.2cm}
+\phys{$VSAT\times100$ $\leftrightarrow$ TCAD \emph{HighFieldSaturation} model}{In a short channel the lateral field is high enough for carriers to reach the saturation velocity $v_{sat}$, which caps the current at roughly $W C_{ox}(V_{GS}-V_{TH})v_{sat}$; raising VSAT by 100$\times$ effectively removes this limit, so the drain current follows the mobility-limited (quadratic) law, $I_{ON}$ increases strongly and the output curves no longer saturate early.}
 
-  \textbf{$VSAT\times100$ $\leftrightarrow$ TCAD \emph{HighFieldSaturation} model:}
-  \todo{explain removal of velocity saturation, effect on $I_{ON}$ and saturation behaviour.}\vspace{1.2cm}
-\end{physics}
-
-\begin{conclusion}
-  \todo{Which effect limits $I_{ON}$ most in a 65\,nm device?}\vspace{1cm}
-\end{conclusion}
-\clearpage
+\concl{Velocity saturation limits $I_{ON}$ the most in a 65\,nm device, because the lateral field is very high, with vertical-field mobility degradation as a secondary limit.}
 
 % ============================================================
+% S5: starts on a fresh page; experiments are paired two per page
+\clearpage
 \section{S5 -- Parametric Variation}
-\circuit{s5-circuit1.png}{Circuit of $I_D$-$V_G$}{.dc vg 0 1.5 0.01}
-\circuit{s5-circuit2.png}{Circuit of $I_D$-$V_D$}{.dc vd 0 1.5 0.01}
+\circuittwo
+  {s5-circuit1.png}{Circuit of $I_D$-$V_G$}{.dc vg 0 1.5 0.01}
+  {s5-circuit2.png}{Circuit of $I_D$-$V_D$}{.dc vd 0 1.5 0.01}
 
 \noindent Each experiment varies one parameter around its nominal value. $I_D$--$V_G$ is simulated at $V_{DS}=0.4$~V and $I_D$--$V_D$ at $V_{GS}=1.1$~V.
 
-\subsection*{Summary of Experiments}
-\begin{table}[H]
-  \centering\small
-  \begin{tabular}{@{}clll@{}}
-    \toprule
-    Exp. & Parameter & Low / Nominal / High & Unit \\
-    \midrule
-    1  & VTH0      & 0.30 / 0.423 / 0.55                                          & V \\
-    2  & TOXE      & 1.5 / 1.85 / 2.5                                             & nm \\
-    3  & L (drawn) & 55 / 65 / 100                                                & nm \\
-    4  & XL        & $-35$ / $-30$ / $-15$                                        & nm \\
-    5  & LINT      & 2 / 5.25 / 8                                                 & nm \\
-    6  & W (drawn) & 0.5 / 1 / 2                                                  & $\mu$m \\
-    7  & WINT      & 0 / 5 / 40                                                   & nm \\
-    8  & NDEP      & $1.5\times10^{18}$ / $2.54\times10^{18}$ / $4\times10^{18}$  & cm$^{-3}$ \\
-    9  & NSD       & $5\times10^{19}$ / $2\times10^{20}$ / $5\times10^{20}$       & cm$^{-3}$ \\
-    10 & XJ        & 10 / 19.6 / 30                                               & nm \\
-    11 & NGATE     & $1\times10^{19}$ / $2\times10^{20}$ / $1\times10^{21}$       & cm$^{-3}$ \\
-    12 & U0        & 300 / 491 / 700                                              & cm$^2$/V$\cdot$s \\
-    13 & VSAT      & $0.8\times10^{7}$ / $1.24\times10^{7}$ / $2\times10^{7}$     & cm/s \\
-    14 & RDSW      & 50 / 165 / 400                                               & $\Omega\cdot\mu$m \\
-    \bottomrule
-  \end{tabular}
-  \caption{Parameters varied in S5 (the handout text says ``1 to 13'' but lists 14 rows).}
-\end{table}
+\expblock{1}{VTH0}{0.30 / 0.423 / 0.55~V}{VTH0}{0.28 & 97.92 & 1090 & 143}{0.40 & 93.35 & 933 & 7.21}{0.53 & 92.02 & 760 & 0.295}{
+  As expected got $V_{th}$ close to the specified values in pm file 
+}
 \clearpage
-
-\expblock{1}{VTH0}{0.30 / 0.423 / 0.55~V}{VTH0}{0.28 & 97.92 & 1090 & 143}{0.40 & 93.35 & 933 & 7.21}{0.53 & 92.02 & 760 & 0.295}
-\expblock{2}{TOXE}{1.5 / 1.85 / 2.5~nm}{TOXE}{0.34 & 90.23 & 992 & 21.6}{0.40 & 93.35 & 933 & 7.21}{0.51 & 102.46 & 778 & 1.35}
-\expblock{3}{L (drawn)}{55 / 65 / 100~nm}{L_drawn}{0.28 & 96.35 & $\approx$1200 & $\approx$140}{0.40 & 93.35 & 933 & 7.21}{0.48 & 93.12 & $\approx$700 & $\approx$1}
-\expblock{4}{XL}{$-35$ / $-30$ / $-15$~nm}{XL}{0.36 & 93.96 & 1010 & 19.1}{0.40 & 93.35 & 933 & 7.21}{0.45 & 92.91 & 792 & 2.15}
-\expblock{5}{LINT}{2 / 5.25 / 8~nm}{LINT}{0.43 & 92.75 & 862 & 3.58}{0.40 & 93.35 & 933 & 7.21}{0.35 & 94.23 & 1020 & 22.0}
-\expblock{6}{W (drawn)}{0.5 / 1 / 2~$\mu$m}{W_drawn}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.35 & 933 & 7.21}
-\expblock{7}{WINT}{0 / 5 / 40~nm}{WINT}{0.40 & 93.35 & 939 & 7.28}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.34 & 891 & 6.69}
-\expblock{8}{NDEP}{$1.5\times10^{18}$ / $2.54\times10^{18}$ / $4\times10^{18}$~cm$^{-3}$}{NDEP}{0.38 & 86.23 & 957 & 5.28}{0.40 & 93.35 & 933 & 7.21}{0.41 & 101.05 & 916 & 11.1}
-\expblock{9}{NSD}{$5\times10^{19}$ / $2\times10^{20}$ / $5\times10^{20}$~cm$^{-3}$}{NSD}{0.40 & 93.34 & 1210 & 7.14}{0.40 & 93.35 & 1210 & 7.21}{0.40 & 93.35 & 1210 & 7.25}
-\expblock{10}{XJ}{10 / 19.6 / 30~nm}{XJ}{0.40 & 93.34 & 924 & 7.00}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.35 & 939 & 7.35}
-\expblock{11}{NGATE}{$1\times10^{19}$ / $2\times10^{20}$ / $1\times10^{21}$~cm$^{-3}$}{NGATE}{0.37 & 93.32 & 642 & 7.19}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.36 & 958 & 7.22}
-\expblock{12}{U0}{300 / 491 / 700~cm$^2$/V$\cdot$s}{U0}{0.42 & 93.33 & 840 & 4.79}{0.40 & 93.35 & 933 & 7.21}{0.39 & 93.10 & 980 & 9.46}
-\expblock{13}{VSAT}{$0.8\times10^{7}$ / $1.24\times10^{7}$ / $2\times10^{7}$~cm/s}{VSAT}{0.43 & 93.25 & 1520 & 9.04}{0.40 & 93.35 & 933 & 7.21}{0.43 & 93.25 & 1530 & 9.06}
-\expblock{14}{RDSW}{50 / 165 / 400~$\Omega\cdot\mu$m}{RDSW}{0.42 & 93.31 & 1280 & 7.16}{0.40 & 93.35 & 933 & 7.21}{0.38 & 93.14 & 604 & 7.27}
-
-\subsection{Overall Summary of S5}
-\begin{table}[H]
-  \centering\small
-  \begin{tabular}{@{}clcccl@{}}
-    \toprule
-    Exp. & Parameter & $V_{TH}$ & $I_{ON}$ & $I_{OFF}$ & Matches expectation? (Y/N, reason) \\
-    \midrule
-    1  & VTH0  & $\uparrow$ & $\downarrow$ & $\downarrow$ & \\
-    2  & TOXE  & $\uparrow$ & $\downarrow$ & $\downarrow$ & \\
-    3  & L     & $\uparrow$ & $\downarrow$ & $\downarrow$ & \\
-    4  & XL    & $\uparrow$ & $\downarrow$ & $\downarrow$ & \\
-    5  & LINT  & $\downarrow$ & $\uparrow$ & $\uparrow$ & \\
-    6  & W     & $\approx$ & $\approx$ & $\approx$ & \\
-    7  & WINT  & $\approx$ & $\downarrow$ & $\downarrow$ & \\
-    8  & NDEP  & $\uparrow$ & $\downarrow$ & $\uparrow$ & \\
-    9  & NSD   & $\approx$ & $\approx$ & $\approx$ & \\
-    10 & XJ    & $\approx$ & $\approx$ & $\approx$ & \\
-    11 & NGATE & $\approx$ & $\uparrow$ & $\approx$ & \\
-    12 & U0    & $\downarrow$ & $\uparrow$ & $\uparrow$ & \\
-    13 & VSAT  & $\approx$ & n.m. & $\approx$ & \\
-    14 & RDSW  & $\downarrow$ & $\downarrow$ & $\approx$ & \\
-    \bottomrule
-  \end{tabular}
-  \caption{Trend summary ($\uparrow$, $\downarrow$, $\approx$ as the parameter increases; n.m.\ = non-monotonic).}
-\end{table}
-
-\begin{conclusion}
-  \todo{Which parameters dominate $V_{TH}$, $I_{ON}$, $I_{OFF}$? Which behave unexpectedly in SPICE and why?}\vspace{1.5cm}
-\end{conclusion}
+\expblock{2}{TOXE}{1.5 / 1.85 / 2.5~nm}{TOXE}{0.34 & 90.23 & 992 & 21.6}{0.40 & 93.35 & 933 & 7.21}{0.51 & 102.46 & 778 & 1.35}{A thicker oxide lowers $C_{ox}$ and weakens gate control, so $V_{TH}$ rises (0.34 to 0.51~V), $I_{ON}$ falls (992 to 778~$\mu$A/$\mu$m), $I_{OFF}$ drops and SS degrades.}
+\expblock{3}{L (drawn)}{55 / 65 / 100~nm}{L_drawn}{0.28 & 96.35 & $\approx$1200 & $\approx$140}{0.40 & 93.35 & 933 & 7.21}{0.48 & 93.12 & $\approx$700 & $\approx$1}{A shorter channel gives a lower $V_{TH}$ (short-channel effect), a higher $I_{ON}$ ($\approx$1200 vs $\approx$700~$\mu$A/$\mu$m) and a much larger $I_{OFF}$.}
 \clearpage
+\expblock{4}{XL}{$-35$ / $-30$ / $-15$~nm}{XL}{0.36 & 93.96 & 1010 & 19.1}{0.40 & 93.35 & 933 & 7.21}{0.45 & 92.91 & 792 & 2.15}{A more negative XL shortens $L_{eff}$, so $V_{TH}$ falls, $I_{ON}$ rises and $I_{OFF}$ increases, the same trend as reducing the drawn $L$.}
+\expblock{5}{LINT}{2 / 5.25 / 8~nm}{LINT}{0.43 & 92.75 & 862 & 3.58}{0.40 & 93.35 & 933 & 7.21}{0.35 & 94.23 & 1020 & 22.0}{A larger LINT shortens $L_{eff}=L+XL-2\,LINT$, so $V_{TH}$ drops (0.43 to 0.35~V) while $I_{ON}$ and $I_{OFF}$ rise.}
+\clearpage
+\expblock{6}{W (drawn)}{0.5 / 1 / 2~$\mu$m}{W_drawn}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.35 & 933 & 7.21}{All parameters are identical for the three widths because they are normalised per $\mu$m, so width only scales the absolute current linearly.}
+\expblock{7}{WINT}{0 / 5 / 40~nm}{WINT}{0.40 & 93.35 & 939 & 7.28}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.34 & 891 & 6.69}{WINT only reduces $W_{eff}$, so $I_{ON}$ and $I_{OFF}$ fall slightly (939 to 891~$\mu$A/$\mu$m) while $V_{TH}$ and SS are unchanged.}
+\clearpage
+\expblock{8}{NDEP}{$1.5\times10^{18}$ / $2.54\times10^{18}$ / $4\times10^{18}$~cm$^{-3}$}{NDEP}{0.38 & 86.23 & 957 & 5.28}{0.40 & 93.35 & 933 & 7.21}{0.41 & 101.05 & 916 & 11.1}{Higher channel doping increases the depletion capacitance, so SS degrades (86.2 to 101.1~mV/dec), $V_{TH}$ rises slightly and $I_{ON}$ falls through mobility loss.}
+\expblock{9}{NSD}{$5\times10^{19}$ / $2\times10^{20}$ / $5\times10^{20}$~cm$^{-3}$}{NSD}{0.40 & 93.34 & 1210 & 7.14}{0.40 & 93.35 & 1210 & 7.21}{0.40 & 93.35 & 1210 & 7.25}{Source/drain doping has a negligible effect on all extracted parameters over this range, since it only enters through the junction and series-resistance models.}
+\clearpage
+\expblock{10}{XJ}{10 / 19.6 / 30~nm}{XJ}{0.40 & 93.34 & 924 & 7.00}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.35 & 939 & 7.35}{Junction depth has only a small effect: $I_{ON}$ rises slightly (924 to 939~$\mu$A/$\mu$m) with deeper junctions while $V_{TH}$ and SS stay constant.}
+\expblock{11}{NGATE}{$1\times10^{19}$ / $2\times10^{20}$ / $1\times10^{21}$~cm$^{-3}$}{NGATE}{0.37 & 93.32 & 642 & 7.19}{0.40 & 93.35 & 933 & 7.21}{0.40 & 93.36 & 958 & 7.22}{Low gate doping causes poly-depletion, which acts as extra oxide thickness and cuts $I_{ON}$ to 642~$\mu$A/$\mu$m, while above $2\times10^{20}$~cm$^{-3}$ the response saturates.}
+\clearpage
+\expblock{12}{U0}{300 / 491 / 700~cm$^2$/V$\cdot$s}{U0}{0.42 & 93.33 & 840 & 4.79}{0.40 & 93.35 & 933 & 7.21}{0.39 & 93.10 & 980 & 9.46}{Higher low-field mobility raises $I_{ON}$ (840 to 980~$\mu$A/$\mu$m) with SS essentially unchanged.}
+\expblock{13}{VSAT}{$0.8\times10^{7}$ / $1.24\times10^{7}$ / $2\times10^{7}$~cm/s}{VSAT}{0.43 & 93.25 & 1520 & 9.04}{0.40 & 93.35 & 933 & 7.21}{0.43 & 93.25 & 1530 & 9.06}{VSAT changes $I_{ON}$ strongly (about 1520--1530 vs 933~$\mu$A/$\mu$m at nominal) while SS stays near 93.3~mV/dec, showing that it acts only at high lateral field.}
+\clearpage
+\expblock{14}{RDSW}{50 / 165 / 400~$\Omega\cdot\mu$m}{RDSW}{0.42 & 93.31 & 1280 & 7.16}{0.40 & 93.35 & 933 & 7.21}{0.38 & 93.14 & 604 & 7.27}{A larger parasitic series resistance strongly reduces $I_{ON}$ (1280 to 604~$\mu$A/$\mu$m) but leaves SS and $I_{OFF}$ unchanged, since it only matters at high current.}
+
+\concl{$V_{TH}$ is set mainly by VTH0, TOXE, $L_{eff}$ (L, XL, LINT), NDEP and NGATE; $I_{ON}$ is controlled by $L_{eff}$, U0, VSAT, RDSW and NGATE; SS follows TOXE and NDEP, while W, NSD and XJ have little effect on the normalised characteristics.}
 
 % ============================================================
+\Needspace{0.6\textheight}
 \section{S6 -- Approximate Match to TCAD}
 \circuit{s6-circuit.png}
   {LTspice testbench used for the TCAD comparison.}
@@ -452,38 +370,43 @@
 
 \twofig
   {s6_idvg.png}{$I_D$--$V_G$, $V_{DS}=0.4$~V (linear)}
-  {s6-idvd-match.png}{$I_D$--$V_D$, $V_{GS}=0.9$~V (linear)}
-  {}{6.5cm}
+  {s6_idvd.png}{$I_D$--$V_D$, $V_{GS}=0.9$~V (linear)}
+  {}{5cm}
 \vspace{-0.5em}
 \captionof{figure}{TCAD (markers) versus tuned SPICE (lines).}
 
 \begin{table}[H]
-  \centering
+  \centering\small
   \begin{tabular}{@{}lccl@{}}
     \toprule
     Parameter & PTM value & My value & Reason for change \\
     \midrule
-    VTH0& 0.423 & 0.61 & To right shift the whole Id-Vg\\
-    voff& -0.13& -0.6& To pull up the low Voff value in SPICE\\
-    nfactor& 1.9& 5& For above process and lesser $v_{th}$ shift and almost equal subthrehold voltage \\
-    u0& 0.0491& 0.03& To pull the currents in saturation region\\
-    VSAT& 124340 & 74340 & same reason as above\\ 
+    VTH0& 0.423 & 0.685 & To right shift the whole Id-Vg\\
+    VOFF& -0.13& -0.6& To pull up the low Voff value in SPICE\\
+    Nfactor& 1.9& 5& For above process and lesser $V_{th}$ shift \newline and almost equal subthrehold voltage \\
+    U0& 0.0491& 0.02& To pull the currents in saturation region to match $I_D$-$V_G$ \\
+    VSAT& 124340 & 84340 & same reason as above\\ 
+    PCLM & 0.04 & 1.1 & to increase the slope of the saturation region to match $I_D$-$V_D$ \\
+    $\mathrm{ETA0}$ & 0.0058 & 0.0088 & to cope up with above changes \\
     \bottomrule
   \end{tabular}
   \caption{Parameters modified in \texttt{nfit}.}
 \end{table}
-\clearpage
+
+\obs{After tuning, the SPICE lines follow the TCAD markers closely in both $I_D$--$V_G$ and $I_D$--$V_D$, with the threshold region, the saturation current and the output slope all matching.}
+
+\concl{Shifting VTH0, VOFF and NFACTOR aligns the threshold and subthreshold region, while U0, VSAT, PCLM and ETA0 fit the saturation current and slope, so the PTM card approximately matches the TCAD device.}
 
 % ============================================================
+\Needspace{0.6\textheight}
 \section{S7 -- CMOS Inverter}
 \subsection{Circuit and Parameters}
-\begin{figure}[H]
+\noindent\begin{minipage}[c]{0.40\textwidth}
   \centering
-  \gfx{s7-circuit.png}{0.35\textwidth}{6cm}
-  \caption{LTspice schematic of the CMOS inverter.}
-\end{figure}
-
-\begin{table}[H]
+  {\renewcommand{\maxfigh}{5cm}\gfx{s7-circuit.png}{\linewidth}{4.5cm}}
+  \captionof{figure}{LTspice schematic of the CMOS inverter.}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.55\textwidth}
   \centering
   \begin{tabular}{@{}lcc@{}}
     \toprule
@@ -494,86 +417,16 @@
     $V_{DD}$ & 1.1 V    & 1.1 V    \\
     \bottomrule
   \end{tabular}
-\end{table}
+  \captionof{table}{Inverter device parameters.}
+\end{minipage}
 
 \subsection{Voltage Transfer Characteristic}
-\onefig{s7.png}{0.75\textwidth}{7cm}
-  {$V_{out}$ versus $V_{in}$ ($0\to V_{DD}$); mark $V_{OH}$, $V_{OL}$, $V_M$ and the gain region.}
+\onefig{s7.png}{0.6\textwidth}{5.5cm}
+  {$V_{out}$ versus $V_{in}$ ($0\to V_{DD}$) showing $V_{OH}$, $V_{OL}$, $V_M$ and the high-gain region.}
 
-\begin{table}[H]
-  \centering
-  \begin{tabular}{@{}lc@{}}
-    \toprule
-    Quantity & Value \\
-    \midrule
-    $V_{OH}$ (V)                    & \\
-    $V_{OL}$ (V)                    & \\
-    Switching threshold $V_M$ (V)   & \\
-    Max.\ gain $|dV_{out}/dV_{in}|$ & \\
-    \bottomrule
-  \end{tabular}
-  \caption{Inverter metrics from the VTC.}
-\end{table}
 
-\begin{physics}
-  \todo{Explain operation in each region (NMOS off/PMOS on, both in saturation, NMOS on/PMOS off) and why the circuit is called an ``inverter''.}\vspace{2cm}
-\end{physics}
+\phys{Device-physics explanation}{For $V_{in}\approx0$ the NMOS is off and the PMOS is on, so the output is pulled to $V_{DD}$ ($V_{OH}$); as $V_{in}$ nears $V_M$ both transistors are in saturation, the output falls sharply and the gain is maximum; for $V_{in}\approx V_{DD}$ the NMOS is on and the PMOS is off, so the output is pulled to ground ($V_{OL}$). The output is always the logical complement of the input, which is why the circuit is called an inverter.}
 
-\begin{conclusion}
-  \todo{Key takeaway, effect of the $W_p/W_n=2$ ratio on $V_M$.}\vspace{1cm}
-\end{conclusion}
-\clearpage
-
-% ============================================================
-\section{S8 -- GitHub Repository}
-\begin{itemize}
-  \item Repository name: \texttt{LTSPICE}
-  \item URL: \blank[9cm]
-\end{itemize}
-
-\begin{table}[H]
-  \centering
-  \begin{tabular}{@{}ll@{}}
-    \toprule
-    Python script & Purpose \\
-    \midrule
-    \texttt{s2\_transfer.py} & S2: $I_D$--$V_G$ plots and extraction \\
-    \texttt{s3\_output.py}   & S3: $I_D$--$V_D$ family, $g_{ds}$, $r_o$ \\
-    \texttt{s4\_physics.py}  & S4: model overlay \\
-    \texttt{s5\_param.py}    & S5: parametric sweeps \\
-    \texttt{s6\_fit.py}      & S6: TCAD vs SPICE overlay \\
-    \texttt{s7\_inverter.py} & S7: VTC plot \\
-    \bottomrule
-  \end{tabular}
-  \caption{Scripts committed to the repository (rename to match yours).}
-\end{table}
-
-\section{Overall Conclusions}
-\begin{enumerate}
-  \item \todo{Conclusion 1}
-  \item \todo{Conclusion 2}
-  \item \todo{Conclusion 3}
-  \item \todo{Conclusion 4}
-\end{enumerate}
-\vspace{3cm}
-
-\section*{References}
-\addcontentsline{toc}{section}{References}
-\begin{enumerate}
-  \item EC2L104 Course Handout: \emph{A Beginner's Manual to SPICE Modelling in LTspice}.
-  \item PTM -- Predictive Technology Model, 65\,nm BSIM4 model card.
-  \item \todo{Any additional references.}
-\end{enumerate}
-
-\appendix
-\section{Appendix: Python Code Listings}
-\begin{lstlisting}[language=Python]
-# paste key code snippets here (full code is in the GitHub repo)
-\end{lstlisting}
-
-\section{Appendix: Full Model Card}
-\begin{lstlisting}
-* paste the nfit model card here
-\end{lstlisting}
+\concl{The inverter gives full rail-to-rail swing ($V_{OH}=V_{DD}$, $V_{OL}=0$), and the ratio $W_p/W_n=2$ compensates the lower hole mobility so that $V_M$ lies close to $V_{DD}/2$, giving a nearly symmetric transfer curve and balanced noise margins.}
 
 \end{document}

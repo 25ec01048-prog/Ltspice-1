@@ -29,23 +29,23 @@
 *                             dc                             *
 **************************************************************
 *=========================== vth ============================*
-+vth0    = 0.65          k1      = 0.4             k2      = 0.01            k3      = 0
++vth0    = 0.685          k1      = 0.4             k2      = 0.01            k3      = 0
 +k3b     = 0               w0      = 2.5e-006        dvt0    = 1               dvt1    = 2
 +dvt2    = -0.032          dvt0w   = 0               dvt1w   = 0               dvt2w   = 0
 +dsub    = 0.1             minv    = 0.05            voffl   = 0               dvtp0   = 1.0e-009
 +dvtp1   = 0.1             lpe0    = 0               lpeb    = 0               xj      = 1.96e-008
 +ngate   = 0.1e+020        ndep    = 2.54e+018       nsd     = 2e+020          phin    = 0
 +cdsc    = 0.000           cdscb   = 0               cdscd   = 0               cit     = 0
-+voff    = -0.6           nfactor = 5             eta0    = 0.0058          etab    = 0
++voff    = -0.6           nfactor = 5             eta0    = 0.0088          etab    = 0
 +vfb     = -0.55
 *========================= mobility =========================*
 +u0      = 0.02          ua      = 6e-010          ub      = 1.2e-018        uc      = 0
 *================= saturation / bulk charge =================*
-+vsat    =104340           a0      = 1.0             ags     = 1e-020          a1      = 0
++vsat    =84340           a0      = 1.0             ags     = 1e-020          a1      = 0
 +a2      = 1.0             b0      = 0               b1      = 0               keta    = 0.04
 +dwg     = 0               dwb     = 0
 *=========================== rout ===========================*
-+pclm    = 0.25            pdiblc1 = 0.001           pdiblc2 = 0.001           pdiblcb = -0.005
++pclm    = 1.1            pdiblc1 = 0.001           pdiblc2 = 0.001           pdiblcb = -0.005
 +drout   = 0.5             pvag    = 1e-020          delta   = 0.01            pscbe1  = 8.14e+008
 +pscbe2  = 1e-007          fprout  = 0.2             pdits   = 0.08            pditsd  = 0.23
 +pditsl  = 2.3e+006
