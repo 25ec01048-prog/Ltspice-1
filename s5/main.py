@@ -14,6 +14,10 @@ for i, param  in enumerate(parameters):
     for y_label in y_labels:
         df_v = df.sort_values(by=(x_label))
         y = ax[0].plot(df_v[x_label], df_v[y_label], label=y_label)
+        
+        ax[0].axvline(x=df_v[x_label][0], color=y[0].get_color(), linestyle=':', label=f'$I_{{Doff}}$ = {df[y_label][0]:.2e} A')
+        ax[0].axvline(x=df_v.iloc[-1][x_label], color=y[0].get_color(), linestyle=':', label=f'$I_{{Don}}$ = {df_v.iloc[-11][y_label]:.2e} A')
+        
         gm = np.gradient( df_v[y_label],df_v[x_label],) # numerical derivative
             
         highslope_gm = np.where(gm > 0.9 * gm.max())[0] # index of the last zero crossing
@@ -80,7 +84,6 @@ for i, param  in enumerate(parameters):
     df = pd.read_csv('idvd_'+str(i)+'.txt', delimiter="\t")
     x_label = "vd"
     for y_label in y_labels:
-        print(y_label)
         y = ax[2].plot(df[x_label], df[y_label], label=y_label)
         
     # df_v = pd.read_csv('vgs=1.5.txt',sep="\t")

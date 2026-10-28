@@ -27,6 +27,6 @@
 \contentsline {subsection}{\numberline {7.2}Voltage Transfer Characteristic}{29}{subsection.7.2}%
 \contentsline {section}{\numberline {8}S8 -- GitHub Repository}{31}{section.8}%
 \contentsline {section}{\numberline {9}Overall Conclusions}{31}{section.9}%
-\contentsline {section}{References}{31}{section*.63}%
+\contentsline {section}{References}{31}{section*.62}%
 \contentsline {section}{\numberline {A}Appendix: Python Code Listings}{31}{appendix.A}%
 \contentsline {section}{\numberline {B}Appendix: Full Model Card}{31}{appendix.B}%

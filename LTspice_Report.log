@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.3)  20 OCT 2026 21:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.3)  28 OCT 2026 21:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -666,31 +666,31 @@ Package siunitx Info: Option "detect-all" has been deprecated in this release.
 (siunitx)             text-family-to-math = true, text-series-to-math = true"
 (siunitx)             as a replacement.
 
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 104.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 143.
  (c:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count372
 ) (./LTspice_Report.aux)
 \openout1 = `LTspice_Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -747,7 +747,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) (c:/texlive/2026/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 104.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 143.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
@@ -758,16 +758,16 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks46
 \inpenc@posthook=\toks47
 )
-Package hyperref Info: Link coloring OFF on input line 104.
+Package hyperref Info: Link coloring OFF on input line 143.
  (./LTspice_Report.out) (./LTspice_Report.out)
 \@outlinefile=\write4
 \openout4 = `LTspice_Report.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 156.
  (c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 156.
  (c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -788,44 +788,29 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.126 \clearpage
+l.166 \clearpage
                  [1]
 <figs/s1-circuit.png, id=220, 663.22781pt x 438.13687pt>
 File: figs/s1-circuit.png Graphic file (type png)
 <use figs/s1-circuit.png>
-Package pdftex.def Info: figs/s1-circuit.png  used on input line 167.
+Package pdftex.def Info: figs/s1-circuit.png  used on input line 207.
 (pdftex.def)             Requested size: 307.00247pt x 202.80894pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 197.
+(hyperref)                removing `math shift' on input line 245.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 197.
+(hyperref)                removing `subscript' on input line 245.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 197.
+(hyperref)                removing `subscript' on input line 245.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 197.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 207--208
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-
- []
+(hyperref)                removing `math shift' on input line 245.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -837,10 +822,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [2
 
  <./figs/s1-circuit.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 212--213
-
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -852,27 +833,32 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <figs/s2-circuit.png, id=241, 663.22781pt x 438.13687pt>
 File: figs/s2-circuit.png Graphic file (type png)
 <use figs/s2-circuit.png>
-Package pdftex.def Info: figs/s2-circuit.png  used on input line 221.
+Package pdftex.def Info: figs/s2-circuit.png  used on input line 277.
 (pdftex.def)             Requested size: 307.00247pt x 202.80894pt.
 <s2/s2.png, id=242, 794.97pt x 433.62pt>
 File: s2/s2.png Graphic file (type png)
 <use s2/s2.png>
-Package pdftex.def Info: s2/s2.png  used on input line 223.
+Package pdftex.def Info: s2/s2.png  used on input line 279.
 (pdftex.def)             Requested size: 472.31595pt x 257.63327pt.
 
 
 Package caption Warning: \setcaptiontype
-(caption)                outside box or environment on input line 225.
+(caption)                outside box or environment on input line 281.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 225.
+(caption)                particular \caption on input line 281.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 223--225
+Overfull \hbox (17.0pt too wide) in paragraph at lines 279--281
 [][]
+ []
+
+
+Overfull \hbox (32.61777pt too wide) in paragraph at lines 285--304
+ [][] 
  []
 
 
@@ -896,18 +882,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <figs/s3-circuit.png, id=257, 861.9703pt x 516.42938pt>
 File: figs/s3-circuit.png Graphic file (type png)
 <use figs/s3-circuit.png>
-Package pdftex.def Info: figs/s3-circuit.png  used on input line 244.
+Package pdftex.def Info: figs/s3-circuit.png  used on input line 313.
 (pdftex.def)             Requested size: 307.00247pt x 183.93654pt.
 <s3/s3.png, id=258, 642.4803pt x 425.9112pt>
 File: s3/s3.png Graphic file (type png)
 <use s3/s3.png>
-Package pdftex.def Info: s3/s3.png  used on input line 246.
+Package pdftex.def Info: s3/s3.png  used on input line 316.
 (pdftex.def)             Requested size: 377.85419pt x 250.48605pt.
-<s3/gd_vs_vds.png, id=259, 722.7pt x 505.89pt>
+<s3/gd_vs_vds.png, id=259, 714.2685pt x 498.1812pt>
 File: s3/gd_vs_vds.png Graphic file (type png)
 <use s3/gd_vs_vds.png>
-Package pdftex.def Info: s3/gd_vs_vds.png  used on input line 247.
-(pdftex.def)             Requested size: 377.85419pt x 264.50008pt.
+Package pdftex.def Info: s3/gd_vs_vds.png  used on input line 318.
+(pdftex.def)             Requested size: 377.85419pt x 263.54826pt.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -930,12 +916,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s4/s4-circuit.png, id=277, 1099.10625pt x 519.44063pt>
 File: s4/s4-circuit.png Graphic file (type png)
 <use s4/s4-circuit.png>
-Package pdftex.def Info: s4/s4-circuit.png  used on input line 264.
+Package pdftex.def Info: s4/s4-circuit.png  used on input line 339.
 (pdftex.def)             Requested size: 307.00247pt x 145.08571pt.
 <s4/s4.png, id=278, 714.41907pt x 633.11531pt>
 File: s4/s4.png Graphic file (type png)
 <use s4/s4.png>
-Package pdftex.def Info: s4/s4.png  used on input line 266.
+Package pdftex.def Info: s4/s4.png  used on input line 342.
 (pdftex.def)             Requested size: 401.47144pt x 355.7787pt.
 
 
@@ -959,12 +945,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/s5-circuit1.png, id=293, 678.28406pt x 381.67593pt>
 File: s5/s5-circuit1.png Graphic file (type png)
 <use s5/s5-circuit1.png>
-Package pdftex.def Info: s5/s5-circuit1.png  used on input line 290.
+Package pdftex.def Info: s5/s5-circuit1.png  used on input line 369.
 (pdftex.def)             Requested size: 307.00247pt x 172.74846pt.
 <s5/s5-circuit2.png, id=294, 666.23906pt x 391.4625pt>
 File: s5/s5-circuit2.png Graphic file (type png)
 <use s5/s5-circuit2.png>
-Package pdftex.def Info: s5/s5-circuit2.png  used on input line 291.
+Package pdftex.def Info: s5/s5-circuit2.png  used on input line 370.
 (pdftex.def)             Requested size: 307.00247pt x 180.38553pt.
 
 
@@ -988,7 +974,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/VTH0.png, id=313, 1084.05pt x 433.62pt>
 File: s5/VTH0.png Graphic file (type png)
 <use s5/VTH0.png>
-Package pdftex.def Info: s5/VTH0.png  used on input line 319.
+Package pdftex.def Info: s5/VTH0.png  used on input line 401.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1004,7 +990,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/TOXE.png, id=323, 1084.05pt x 433.62pt>
 File: s5/TOXE.png Graphic file (type png)
 <use s5/TOXE.png>
-Package pdftex.def Info: s5/TOXE.png  used on input line 320.
+Package pdftex.def Info: s5/TOXE.png  used on input line 402.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1020,7 +1006,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/L_drawn.png, id=331, 1084.05pt x 433.62pt>
 File: s5/L_drawn.png Graphic file (type png)
 <use s5/L_drawn.png>
-Package pdftex.def Info: s5/L_drawn.png  used on input line 321.
+Package pdftex.def Info: s5/L_drawn.png  used on input line 403.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1036,7 +1022,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/XL.png, id=339, 1084.05pt x 433.62pt>
 File: s5/XL.png Graphic file (type png)
 <use s5/XL.png>
-Package pdftex.def Info: s5/XL.png  used on input line 322.
+Package pdftex.def Info: s5/XL.png  used on input line 404.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1052,7 +1038,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/LINT.png, id=348, 1084.05pt x 433.62pt>
 File: s5/LINT.png Graphic file (type png)
 <use s5/LINT.png>
-Package pdftex.def Info: s5/LINT.png  used on input line 323.
+Package pdftex.def Info: s5/LINT.png  used on input line 405.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1068,7 +1054,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/W_drawn.png, id=356, 1084.05pt x 433.62pt>
 File: s5/W_drawn.png Graphic file (type png)
 <use s5/W_drawn.png>
-Package pdftex.def Info: s5/W_drawn.png  used on input line 324.
+Package pdftex.def Info: s5/W_drawn.png  used on input line 406.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1084,7 +1070,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/WINT.png, id=364, 1084.05pt x 433.62pt>
 File: s5/WINT.png Graphic file (type png)
 <use s5/WINT.png>
-Package pdftex.def Info: s5/WINT.png  used on input line 325.
+Package pdftex.def Info: s5/WINT.png  used on input line 407.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1100,7 +1086,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/NDEP.png, id=373, 1084.05pt x 433.62pt>
 File: s5/NDEP.png Graphic file (type png)
 <use s5/NDEP.png>
-Package pdftex.def Info: s5/NDEP.png  used on input line 326.
+Package pdftex.def Info: s5/NDEP.png  used on input line 408.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1116,7 +1102,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/NSD.png, id=382, 1084.05pt x 433.62pt>
 File: s5/NSD.png Graphic file (type png)
 <use s5/NSD.png>
-Package pdftex.def Info: s5/NSD.png  used on input line 327.
+Package pdftex.def Info: s5/NSD.png  used on input line 409.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1132,7 +1118,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/XJ.png, id=390, 1084.05pt x 433.62pt>
 File: s5/XJ.png Graphic file (type png)
 <use s5/XJ.png>
-Package pdftex.def Info: s5/XJ.png  used on input line 328.
+Package pdftex.def Info: s5/XJ.png  used on input line 410.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1148,7 +1134,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/NGATE.png, id=398, 1084.05pt x 433.62pt>
 File: s5/NGATE.png Graphic file (type png)
 <use s5/NGATE.png>
-Package pdftex.def Info: s5/NGATE.png  used on input line 329.
+Package pdftex.def Info: s5/NGATE.png  used on input line 411.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1164,7 +1150,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/U0.png, id=406, 1084.05pt x 433.62pt>
 File: s5/U0.png Graphic file (type png)
 <use s5/U0.png>
-Package pdftex.def Info: s5/U0.png  used on input line 330.
+Package pdftex.def Info: s5/U0.png  used on input line 412.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1180,7 +1166,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/VSAT.png, id=414, 1084.05pt x 433.62pt>
 File: s5/VSAT.png Graphic file (type png)
 <use s5/VSAT.png>
-Package pdftex.def Info: s5/VSAT.png  used on input line 331.
+Package pdftex.def Info: s5/VSAT.png  used on input line 413.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1196,7 +1182,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <s5/RDSW.png, id=423, 1084.05pt x 433.62pt>
 File: s5/RDSW.png Graphic file (type png)
 <use s5/RDSW.png>
-Package pdftex.def Info: s5/RDSW.png  used on input line 332.
+Package pdftex.def Info: s5/RDSW.png  used on input line 414.
 (pdftex.def)             Requested size: 472.31595pt x 188.92754pt.
 
 
@@ -1219,10 +1205,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [26
 
 ]
+<s6/s6-circuit.png, id=436, 738.50906pt x 476.53032pt>
+File: s6/s6-circuit.png Graphic file (type png)
+<use s6/s6-circuit.png>
+Package pdftex.def Info: s6/s6-circuit.png  used on input line 451.
+(pdftex.def)             Requested size: 307.00247pt x 198.09814pt.
+<s6/s6_idvg.png, id=437, 462.528pt x 346.896pt>
+File: s6/s6_idvg.png Graphic file (type png)
+<use s6/s6_idvg.png>
+Package pdftex.def Info: s6/s6_idvg.png  used on input line 456.
+(pdftex.def)             Requested size: 226.70963pt x 170.03345pt.
+
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 364.
+(caption)                particular \caption on input line 458.
 See the caption package documentation for explanation.
+
+
+Overfull \hbox (72.79544pt too wide) in paragraph at lines 462--473
+ [][] 
+ []
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1233,7 +1235,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [27
 
-]
+ <./s6/s6-circuit.png> <./s6/s6_idvg.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1242,15 +1244,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [28]
-<s7/s7-circuit.png, id=450, 1169.87062pt x 648.92438pt>
+<s7/s7-circuit.png, id=453, 1169.87062pt x 648.92438pt>
 File: s7/s7-circuit.png Graphic file (type png)
 <use s7/s7-circuit.png>
-Package pdftex.def Info: s7/s7-circuit.png  used on input line 396.
+Package pdftex.def Info: s7/s7-circuit.png  used on input line 482.
 (pdftex.def)             Requested size: 165.31346pt x 91.69044pt.
-<s7/s7.png, id=451, 462.528pt x 346.896pt>
+<s7/s7.png, id=454, 462.528pt x 346.896pt>
 File: s7/s7.png Graphic file (type png)
 <use s7/s7.png>
-Package pdftex.def Info: s7/s7.png  used on input line 409.
+Package pdftex.def Info: s7/s7.png  used on input line 501.
 (pdftex.def)             Requested size: 354.23695pt x 265.69215pt.
 
 
@@ -1288,21 +1290,21 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `LTspice_Report.out' has not changed.
-(rerunfilecheck)             Checksum: 1A2787A4330885125188D77C18FF958C;5359.
+(rerunfilecheck)             Checksum: 531F0D6F5A76E97612EBAF9B4587F77E;5359.
  ) 
 Here is how much of TeX's memory you used:
- 34165 strings out of 467525
- 721858 string characters out of 5423210
- 1294546 words of memory out of 5000000
- 62470 multiletter control sequences out of 15000+600000
+ 34166 strings out of 467525
+ 721814 string characters out of 5423210
+ 1294702 words of memory out of 5000000
+ 62472 multiletter control sequences out of 15000+600000
  639296 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,12n,108p,496b,1315s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on LTspice_Report.pdf (32 pages, 16476468 bytes).
+Output written on LTspice_Report.pdf (32 pages, 17668582 bytes).
 PDF statistics:
- 598 PDF objects out of 1000 (max. 8388607)
- 445 compressed objects within 5 object streams
- 139 named destinations out of 1000 (max. 500000)
- 543 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 600 PDF objects out of 1000 (max. 8388607)
+ 443 compressed objects within 5 object streams
+ 138 named destinations out of 1000 (max. 500000)
+ 553 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,6 +1,6 @@
 LTspice 26.0.2 for Windows
 Circuit: C:\Users\tulad\study\eda\ltspice-1\s5\idvd.net
-Start Time: Sun Oct 18 21:42:16 2026
+Start Time: Wed Oct 28 01:41:14 2026
 Options:ALLOW_AMBIGUOUS_MODELS
 solver = Normal
 Maximum thread count: 8
@@ -11,7 +11,7 @@ C:\Users\tulad\study\eda\ltspice-1\s5\idvd.net(5): Missing value, assuming 0V @ 
 
 vd N001 0
 ^^^^^^^^^
-Total elapsed time: 0.149 seconds.
+Total elapsed time: 0.115 seconds.
 
 Files loaded:
 C:\Users\tulad\study\eda\ltspice-1\s5\idvd.net

@@ -1,6 +1,6 @@
 LTspice 26.0.2 for Windows
 Circuit: C:\Users\tulad\study\eda\ltspice-1\s2\spice.net
-Start Time: Tue Oct 20 14:54:43 2026
+Start Time: Wed Oct 28 00:23:36 2026
 Options:ALLOW_AMBIGUOUS_MODELS
 solver = Normal
 Maximum thread count: 8
@@ -13,7 +13,7 @@ vg N002 0
 ^^^^^^^^^
 .step v=0.05
 .step v=1.1
-Total elapsed time: 0.216 seconds.
+Total elapsed time: 0.189 seconds.
 
 Files loaded:
 C:\Users\tulad\study\eda\ltspice-1\s2\spice.net
